@@ -1,0 +1,234 @@
+%---------change this every homework
+\def\yourname{Yingzhu (Jacqueline) Zhang}
+% -----------------------------------------------------
+\def\homework{0} % 0 for solution, 1 for problem-set only
+\def\duedate{mon sep 8, 2014}
+\def\duelocation{}
+\def\hnumber{1}
+\def\prof{Prof. Lewis}
+\def\course{CS 303 Algorithms}%-------------------------------------
+%-------------------------------------
+
+\documentclass[11pt]{article}
+\usepackage[colorlinks,urlcolor=blue]{hyperref}
+\usepackage[osf]{mathpazo}
+\usepackage{amsmath,amsfonts,graphicx}
+\usepackage{latexsym}
+\usepackage[top=1in,bottom=1.4in,left=1.5in,right=1.5in,centering]{geometry}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\definecolor{mdb}{rgb}{0.3,0.02,0.02} 
+\definecolor{cit}{rgb}{0.05,0.2,0.45} 
+\pagestyle{myheadings}
+\markboth{\yourname}{\yourname}
+\usepackage{clrscode}
+
+
+\newenvironment{proof}{\par\noindent{\it Proof.}\hspace*{1em}}{$\Box$\bigskip}
+\newcommand{\qed}{$\Box$}
+\newcommand{\alg}[1]{\mathsf{#1}}
+\newcommand{\handout}{
+   \renewcommand{\thepage}{H\hnumber-\arabic{page}}
+   \noindent
+   \begin{center}
+      \vbox{
+    \hbox to \columnwidth {\sc{\course} --- \prof \hfill}
+    \vspace{-2mm}
+    \hbox to \columnwidth {\sc due \MakeLowercase{\duedate} \duelocation\hfill {\Huge\color{mdb}H\hnumber.}}
+	\vspace{15pt}
+	{\Huge\yourname}
+      }
+   \end{center}
+   \vspace*{2mm}
+}
+\newcommand{\solution}[1]{\medskip\noindent\textbf{Solution:}#1}
+\newcommand{\bit}[1]{\{0,1\}^{ #1 }}
+%\dontprintsemicolon
+%\linesnumbered
+\newtheorem{problem}{\sc\color{cit}problem}
+\newtheorem{practice}{\sc\color{cit}practice}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\begin{document}
+\thispagestyle{empty}
+\handout
+
+Students I have consulte with for this assignment:\\
+1. William Bench\\
+2. Nathanel Marshall\\
+3. Yussre ElBardicy\\
+4. William Theuer\\
+5. Maurice Hayward\\
+6. Stephanie Bramlett\\
+7. Diego Lanao\\
+
+\begin{enumerate}
+
+\item 1.4.4
+\begin{solution}\\
+public class twoSum\\
+\{ \\
+\-\ \-\ \-\ \-\ public static in count(int[] a) \\
+ \-\ \-\ \-\ \-\ \{\\
+		\-\ \-\ \-\ \-\ int N = a.length;\\
+		\-\ \-\ \-\ \-\ int cnt = 0;\\
+		\\
+		\-\ \-\ \-\ \-\ for (int i = 0; i <N; i ++)\\
+			\-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ for (int j = i+1; j < N; j++)\\
+				\-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ if (a[i] + a[j] == 0)\\
+		\-\ \-\ \-\ \-\  \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ cnt ++;\\
+		\\
+		\-\ \-\ \-\ \-\ return cnt;\\
+	\-\ \-\ \-\ \-\ \}\\
+	\\
+	\-\ \-\ \-\ \-\ public static void main(String[] args)\\
+	\-\ \-\ \-\ \-\ \{\\
+		\-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ int[] a = In.readInts(args[0]);\\
+		\-\ \-\ \-\ \-\ \-\ \-\ \-\ \-\ StdOut.println(count(a))\\
+	\-\ \-\ \-\ \-\ \}\\
+\}\\
+
+\begin{tabular}{cccc}
+\bf statement block & \bf time in seconds & \bf frequency & \bf total time\\
+\hline
+D & $t_0$ & $x$(depends on input) & $t_0 x$\\
+C & $t_1$ & $N^2 / 2 - N/2$& $t_1 (N^2 / 2 - N/2)$\\
+B & $t_2$ & $N$ & $t_2 N$\\
+A & $t_3$ & $1$ & $t_3$\\
+\\
+& \bf grand total & $(t_1 /2)N^2$\\
+&& $(-t_1 /2 + t_2)N$\\
+&& $t_3 + t_0 x$\\
+& \bf tilde approximation & $ \sim (t_1 /2)N^2$ (assuming x is small)\\
+& \bf order of growth &$N^2$\\
+\end{tabular}
+
+
+
+\end{solution}
+
+\item 1.4.5
+\begin{solution}
+
+\begin{enumerate}[(a)] 
+\item $\sim N$
+\item $\sim 1$
+\item $1+2/N + 1/N + 2/N^2 = 1+ 1/N + 2/N + 2/N^2$ \space \space $\sim 1$
+\item $\sim 2N^3$
+\item $ lg 2N -lg N = (lg2 + lgN) / lgN = 1/lgN + 1$ \space \space $\sim 1$
+\item $lg(N^2 + 1) / lgN  = lg(1 (N^2 +1)) / lgN \\
+= (lg (N^2 (1+ 1/N^2))) / lgN \\
+= (2 lgN +lg(1+1/1/N^2))) / lgN \\
+= 2 + ((lg(1+1/N^2) /lgN))$ \space \space \space $\sim 2$
+\item $\sim N^{100} / 2^N $
+\end{enumerate}
+
+\end{solution}
+
+\item 1.4.9
+\begin{solution}\\
+According to Doubling Ratio Proposition:\\
+If $T(N) \sim aN^b lgN$, then $T(2N) / T(N) =$\\
+$(a(2N)^b lg(2N)) / aN^b lgN$\\
+$(2^b N^b lg(2N)) / N^b lgN$\\
+$(2^b lg(2N)) / lgN$\\
+$(2^b (lg2 lgN)) / lgN = 2^b(1)$\\
+$\therefore$  \space $\sim 2^b$\\
+
+Because the running time for problems of size $N_0= T$, and the doubling factor converges to $2^b$ then\\
+According to Doubling Ratio Proposition, \\
+$aN_0 ^b lgN_0 = T$, $a = T/ (N_0 ^b lg N_0)$ \\
+$\therefore$ the running time of a program for a problem of size N: $\sim T (N^b lgN)/ (N_0 ^b lg N_0)$
+
+\end{solution}
+
+\item 1.5.1
+\begin{solution}\\
+Through quick-find, we get: \\
+\begin{tabular}{c|cccccccccc|r}
+$p$-$q$& 0&1 &2 &3 &4 &5 &6 &7 & 8 & 9 & number of times the array is accessed\\
+\hline
+9-0 & 0&1 &2 &3 &4 &5 &6 &7 & 8 & 0 & 2+10+1 = 13\\
+3-4 & 0&1 &2 &4 &4 &5 &6 &7 & 8 & 0 & 2+10+1 = 13\\
+5-8 & 0&1 &2 &4 &4 &8 &6 &7 & 8 & 0 & 2+10+1 = 13\\
+7-2 & 0&1 &2 &4 &4 &8 &6 &2 & 8 & 0 & 2+10+1 = 13\\
+2-1 & 0&1 &1 &4 &4 &8 &6 &1 & 8 & 0 & 2+10+1+1 = 14\\
+5-7 & 0&1 &1 &4 &4 &1 &6 &1 & 1 & 0 & 2+10+1+1 = 14\\
+0- 3& 4&1 &1 &4 &4 &1 &6 &1 & 1 & 4 & 2+10+1+1 = 14\\
+4- 2& 4&1 &1 &1 &1 &1 &6 &1 & 1 & 1 & 2+10+1+2 = 15\\
+\\
+\end{tabular}
+See attached sheet of paper for demonstrative diagrams.
+\end{solution}
+
+\item 1.5.2
+\begin{solution}\\
+Through quick-union, we get: \\
+\begin{tabular}{cc|cccccccccc|r}
+& $p$-$q$& 0&1 &2 &3 &4 &5 &6 &7 & 8 & 9 & number of times the array is accessed\\
+\hline
+1) & 9-0 & 0&1 &2 &3 &4 &5 &6 &7 & 8 & 0 & 2+1 = 3\\
+2) & 3-4 & 0&1 &2 &4 &4 &5 &6 &7 & 8 & 0 & 2+1 = 3\\
+3) & 5-8 & 0&1 &2 &4 &4 &8 &6 &7 & 8 & 0 & 2+1 = 3\\
+4) & 7-2 & 0&1 &2 &4 &4 &8 &6 &2 & 8 & 0 & 2+1 = 3\\
+5) & 2-1 & 0&1 &1 &4 &4 &8 &6 &2 & 8 & 0 & 2+1 = 3\\
+6) & 5-7 & 0&1 &1 &4 &4 &2 &6 &2 & 8 & 0 & 2+2+1 = 5\\
+7) & 0-3 & 4&1 &1 &4 &4 &2 &6 &2 & 8 & 0 & 1+2+1 = 4\\
+8) & 4-2 & 4&1 &1 &4 &1 &2 &6 &2 & 8 & 0 & 1+2+1 = 4\\
+\\
+\end{tabular}
+See attached sheet of paper for demonstrative diagrams.
+
+\end{solution}
+
+\item 1.5.3
+\begin{solution}\\
+Through weighted quick-union, we get: \\
+\begin{tabular}{cc|cccccccccc|r}
+& $p$-$q$& 0&1 &2 &3 &4 &5 &6 &7 & 8 & 9 & number of times the array is accessed\\
+\hline
+1) & 9-0 & 9&1 &2 &3 &4 &5 &6 &7 & 8 & 9 & 2+1+1 = 4\\
+2) & 3-4 & 9&1 &2 &3 &3 &5 &6 &7 & 8 & 9 & 2+1+1 = 4\\
+3) & 5-8 & 9&1 &2 &3 &3 &5 &6 &7 & 5 & 9 & 2+1+1 = 4\\
+4) & 7-2 & 9&1 &7 &3 &3 &5 &6 &7 & 5 & 9 & 2+1+1 = 4\\
+5) & 2-1 & 9&7 &7 &3 &3 &5 &6 &7 & 5 & 9 & 2+1+1+1 = 5\\
+6) & 5-7 & 9&7 &7 &3 &3 &5 &6 &5 & 5 & 9 & 2+1+1 = 4\\
+7) & 0-3 & 9&7 &7 &9 &3 &5 &6 &5 & 5 & 9 & 2+2+1+1 = 6\\
+8) & 4-2 & 9&7 &7 &9 &7 &5 &6 &5 & 5 & 9 & 2+2+1+1 = 6\\
+\\
+\end{tabular}
+See attached sheet of paper for demonstrative diagrams.
+\end{solution}
+
+\item 1.5.5
+$10^9$ sites--array size/number of components),\\ 
+$10^6$ input pairs, \\
+$10^9$ instructions per second--array accesses persecond\\
+Assume:each iteration of the inner $for$ loop requires 10 machine instruction.\\
+We can find the minimus amount of time (in days) that would be required for quick-find to solve this dynamic connectivity problem by: \\
+\begin{solution}\\
+For each input pair:\\
+$find(): 2 machine instructions$ \\
+$union(): 10 * (10^9 +1) machine instructions$\\
+Then, for $10^6$ pair, the total machine instructions = $2*10^6 + 10^7(10^9 +1)$\\
+Also, a computer is capable of executing $24 * 60^2 * 10^9 = 8.64*10^13$ machine instructions per day\\
+ $(2*10^6 + 10^7(10^9 +1)) / 8.64*10^13 \approx 115.7407$\\
+$\therefore$ $\approx 116$ days 
+
+\end{solution}
+
+\item 1.5.9
+\begin{solution}\\
+According to the proposition that the depth of any node in a forest built by weighted quick-union for $N$ sites is at most $lgN$, \\
+When $N= 10,$ depth = $lg10 (3<lg10<4)$\\
+But according to the diagram drawn in the attachement page, the depth of this problem is 4,\\
+$\therefore$ it is impossible to ge the result by running weighted quick-union 
+
+\end{solution}
+
+\end{enumerate}
+
+
+\end{document}

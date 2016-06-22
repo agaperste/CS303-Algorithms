@@ -1,0 +1,5 @@
+Q: Explain why the union function is named Union Find::onion() rather than
+Union Find::union().
+
+A: This is because union is a reserved word in C--union is a data type in C 
+that allows one to store different data types at the same place in memory.

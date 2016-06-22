@@ -1,0 +1,28 @@
+Question for Algorithm's sorting project:
+
+1. I know we run test.c, but, are we supposed to run more test with valgrind or gcc? (we talked about those two in class but I didn't completely understand.)
+
+2. In the example insertion sort, you've used pointer *, however, should we be using malloc() in any places? 
+
+3. We should pass in values and test right? But when we compile gcc, that doesn't happen yet right? Then, when and where should we be manually pass in the values?
+
+4. How do I make sure my insertion sort is only being called onto n<=42, not the entire array?
+
+-------------------
+
+1. implicit declaration of function?
+2. In recursive_mergesort,should I declare and initialize a[] and aux[] together or separate?
+3. conflicting types for merge?
+4. is memcpy ok?
+
+- Where exactly should we declare and initialize an array (or any variable)? Because if everything is a procedure in C, then I'm a bit lost as to how separate procedures could call on each other's variables? If possible, in what order? Like in Python, you declare and initialize as a class variable, then it's public and you have access. Is there similar things in c and how does it work?
+
+- pass in a in the parameter after declaration and initialization, that means the value is passed in right? because c passes value by default, right?
+
+-next step to do? after compiling an running the test.c? (what types of value do we input and so forth)
+
+
+-----------
+10000000 
+
+efficient<-- allocate aux once and pass down , dont malloc a again!

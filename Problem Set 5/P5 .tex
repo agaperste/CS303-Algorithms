@@ -1,0 +1,188 @@
+%---------change this every homework
+\def\yourname{Yingzhu (Jacqueline) Zhang}
+% -----------------------------------------------------
+\def\homework{0} % 0 for solution, 1 for problem-set only
+\def\duedate{wed oct 1, 2014}
+\def\duelocation{}
+\def\hnumber{5}
+\def\prof{Prof. Lewis}
+\def\course{CS 303 Algorithms}%-------------------------------------
+%-------------------------------------
+
+\documentclass[11pt]{article}
+\usepackage[colorlinks,urlcolor=blue]{hyperref}
+\usepackage[osf]{mathpazo}
+\usepackage{amsmath,amsfonts,graphicx}
+\usepackage{latexsym}
+\usepackage[top=1in,bottom=1.4in,left=1.5in,right=1.5in,centering]{geometry}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\definecolor{mdb}{rgb}{0.3,0.02,0.02} 
+\definecolor{cit}{rgb}{0.05,0.2,0.45} 
+\pagestyle{myheadings}
+\markboth{\yourname}{\yourname}
+\usepackage{clrscode}
+
+
+\newenvironment{proof}{\par\noindent{\it Proof.}\hspace*{1em}}{$\Box$\bigskip}
+\newcommand{\qed}{$\Box$}
+\newcommand{\alg}[1]{\mathsf{#1}}
+\newcommand{\handout}{
+   \renewcommand{\thepage}{H\hnumber-\arabic{page}}
+   \noindent
+   \begin{center}
+      \vbox{
+    \hbox to \columnwidth {\sc{\course} --- \prof \hfill}
+    \vspace{-2mm}
+    \hbox to \columnwidth {\sc due \MakeLowercase{\duedate} \duelocation\hfill {\Huge\color{mdb}H\hnumber.}}
+	\vspace{15pt}
+	{\Huge\yourname}
+      }
+   \end{center}
+   \vspace*{2mm}
+}
+\newcommand{\solution}[1]{\medskip\noindent\textbf{Solution:}#1}
+\newcommand{\bit}[1]{\{0,1\}^{ #1 }}
+%\dontprintsemicolon
+%\linesnumbered
+\newtheorem{problem}{\sc\color{cit}problem}
+\newtheorem{practice}{\sc\color{cit}practice}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\begin{document}
+\thispagestyle{empty}
+\handout
+
+Students I have consulte with for this assignment:\\
+1. Diego Lanao\\
+2. Liam Bench\\
+3. Jake Shor\\
+4. Nate Marshalls\\
+5. Maurice Hayward\\
+6. Tyler Reid
+
+\begin{enumerate}
+
+\item 3.3.10
+\begin{solution}\\
+(See attached paper.)
+\end{solution}
+
+\item 3.3.11
+\begin{solution}\\
+(See attached paper.)
+\end{solution}
+
+\item 3.4.1
+
+\begin{solution}\\
+\begin{quote}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c}
+\bf key&E&A&S&Y&Q&U&T&I&O&N\\
+\hline
+value&5&1&19&25&17&21&20&9&15&14\\
+\hline
+\bf hash&0&1&4&0&2&1&0&4&0&4
+\end{tabular}
+\end{quote}
+* We hash by using hash function $11k\%M$, where $M=5$\\
+$\therefore$ The table index is:
+\begin{quote}
+\begin{tabular}{ccccc}
+0&1&2&3&4\\
+\hline
+E&A&Q&&S\\
+Y&U&&&I\\
+T&&&&N\\
+O&&&&\\
+\end{tabular}
+\end{quote}
+
+\end{solution}
+
+
+\item 3.4.6
+
+\begin{solution}\\
+{\bf Proposition:} For a modular hash function with prime $M$, two keys that are interger differring by $2^p$ with $p \in N$  have different hash values.\\
+$Proof:$\\
+We prove by contradiction.\\
+Suppose the proposition above is false, which is, for a modular hash function with prime $M$, two keys that are interger differring by $2^p$ with $p \in N$  have the same hash values\\
+Then,
+
+\begin{quote}
+$k\%M=(k-2^p)\%M$\\
+For key $a$, we have:\\
+$k=aM+r, a \in \mathbb{N}$\\
+For key $b$, we have:\\
+$k-2^p=bM+r, b \in \mathbb{N}$\\
+$aM+r =bM+r+2^p$\\
+$(a-b)M=2^P$
+\end{quote}
+
+If $(a-b)M=2^P$, both sides would have to contain $M$. However, this is not possible for the right side of the equation given that $M \not= 2$. This is because $2^p$ only gives prime factorization with values of 2 without $M$.\\
+Following that, the contradiction of the proposition is false.\\
+$\therefore$ The proposition "For a modular hash function with prime $M$, two keys that are interger differring by $2^p$ with $p \in N$  have different hash values" is $true$. 
+
+\end{solution}
+
+
+\item 3.4.7
+
+\begin{solution}\\
+{\bf Proposition:} Implementing modular hashing for integer keys with the code $(a \times k) \% M$, where $a$ is an arbitrary fixed prime, will not mix up the bits sufficiently well that we can use nonprime $M$.\\
+$Proof:$\\
+We prove this by example. \\
+We first randomly select some number, $25, 37, 48, 91, 145;$ and sets $a$ to be a prime number 2, $M$ to be 4 (or $2^2$)\\
+Then, the table index would be:
+
+\begin{quote}
+\begin{tabular}{cccc}
+0&1&2&3\\
+\hline
+48&&25&\\
+&&37&\\
+&&91&\\
+&&145&\\
+\end{tabular}
+\end{quote}
+
+$\therefore$ As shown above, implementing modular hashing for integer keys with the code $(a \times k) \% M$, where $a$ is an arbitrary fixed prime, will not mix up the bits sufficiently well that we can use nonprime $M$.
+\end{solution}
+
+
+\item 3.4.13
+
+\begin{solution}\\
+Scenario $a$ leads to expected linear running time for a random search hit in a linear-probing hash table.\\
+$Explanation:$\\
+If all keys hash to the same index, then the $i$th key inserted requires $i$ times of loopups to be found.\\
+Because the probability of looking up $i$th key is $1/n$, as it is random,\\
+$\therefore$ All keys hash to the same index results into an expected linear running time. 
+\end{solution}
+
+
+\item 3.3.15
+
+\begin{solution}\\
+\begin{quote}
+$\frac{N(N+1)}{2}$
+\end{quote}
+\end{solution}
+
+$Proof:$\\
+To insert $N$ keys into an initially empty table using linear probing with array resizing, we are increasing the size of the array. For instance, we start with $i[0]$ and add to $i[1]$. As we keep incrementing the index, we are also incrementing the number of compares required in such a fashion:\\
+\begin{tabular}{c|c|c|c|c|}
+item&1&1&1&...\\
+\hline
+index&0&1&2&...\\
+\end{tabular}, 
+which results $1, 2, 3, ..., \frac{N(N+1)}{2}$ compares.
+
+
+\end{enumerate}
+
+
+\end{document}
